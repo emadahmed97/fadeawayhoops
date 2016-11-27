@@ -8,6 +8,8 @@ from .models import Content,Metadata,LongArticle
 
 def index(request):
 
+
+    context = {}
     return render(request, 'articles/new/index03.html', context)
 
 def article(request, article_name_slug):
