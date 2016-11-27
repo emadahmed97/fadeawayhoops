@@ -8,7 +8,6 @@ from .models import Content,Metadata,LongArticle
 
 def index(request):
     latest_post_list = Content.objects.order_by('-article_date')[:5]
-    carousel = Content.objects.order_by('-article_date')[:3]
     older_post_list = Content.objects.order_by('-article_date')[:10]
 
 
