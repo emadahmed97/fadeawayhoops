@@ -19,7 +19,10 @@ def index(request):
     except ProgrammingError:
         print('ProgrammingError')
 
-    return render(request, 'articles/new/index03.html', carousel)
+    try:
+        return render(request, 'articles/new/index03.html', carousel)
+    except ProgrammingError:
+        print('ProgrammingError')
 
 def article(request, article_name_slug):
 
