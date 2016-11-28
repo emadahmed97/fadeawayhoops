@@ -16,7 +16,7 @@ def index(request):
         older_post_list = Content.objects.order_by('-article_date')[:10]
         context = {'latest_post_list': latest_post_list, 'carousel':carousel,'older_post_list':older_post_list }
     except ProgrammingError as e:
- +        logger.warning('Some migrations are not applied!')
+        logger.warning('Some migrations are not applied!')
 
     return render(request, 'articles/new/index03.html', context)
 
