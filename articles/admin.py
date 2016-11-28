@@ -1,5 +1,7 @@
 from django.contrib import admin
 from .models import Content,Metadata
+from django.db.utils import ProgrammingError
+import logging
 
 admin.site.register(Metadata)
 
@@ -15,4 +17,7 @@ class ContentAdmin(admin.ModelAdmin):
     class Meta:
         model = Content
 
-admin.site.register(Content, ContentAdmin)
+try:
+	admin.site.register(Content, ContentAdmin)
+except ProgrammingError as e:
+    logger.warning('Some migrations are not applied!')
