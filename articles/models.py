@@ -10,6 +10,7 @@ from django.utils.text import slugify
 from django.conf import settings
 
 
+
 # Create your models here.
 
 def get_image_path(instance, filename):
