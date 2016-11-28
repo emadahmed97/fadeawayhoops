@@ -10,6 +10,7 @@ from .models import Content,Metadata,LongArticle
 
 
 def index(request):
+    print "got to views"
     try:
         latest_post_list = Content.objects.order_by('-article_date')[:5]
         carousel = Content.objects.order_by('-article_date')[:3]
