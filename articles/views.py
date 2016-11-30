@@ -21,7 +21,7 @@ def index(request):
         print('ProgrammingError')
 
     try:
-        return render(request, 'articles/new/index03.html')
+        return render(request, 'articles/new/index03.html',context)
     except ProgrammingError:
         print('ProgrammingError')
 
