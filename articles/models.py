@@ -85,7 +85,7 @@ class Content(models.Model):
     heading17 = models.CharField(max_length=250,null=True,blank=True);
     paragraph17 = models.TextField(max_length=20000,null=True,blank=True);
 
-    
+
 
 
     def save(self, *args, **kwargs):
@@ -168,4 +168,5 @@ class LongArticle(models.Model):
 
     heading15 = models.CharField(max_length=250,null=True);
     paragraph15 = models.TextField(max_length=20000,null=True);
+
 
