@@ -25,8 +25,6 @@ SECRET_KEY = '%vyi20!)j%1vmm#n2rd+69l!5t=j2q#*h-4h=i=%nme9@h5@v8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -88,8 +86,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ALLOWED_HOSTS = ['*']
 
-DEBUG = True
-
 try:
     from .local_settings import *
 except ImportError:
@@ -134,11 +130,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
+STATIC_URL = "/static/"
+
 
 
 # Media files
