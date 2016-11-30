@@ -74,12 +74,12 @@ WSGI_APPLICATION = 'fadeawayhoops.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'debt2jklknr6p1',
         'USER': 'qaqlhvosyjwzfy',
-        'PASSWORD':'o43l99-m72ibVIl5LWfCJXtV-i'
-        'HOST': 'ec2-50-17-227-146.compute-1.amazonaws.com'
-        'PORT': '5432'
+        'PASSWORD': 'o43l99-m72ibVIl5LWfCJXtV-i',
+        'HOST': 'ec2-50-17-227-146.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
