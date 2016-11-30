@@ -11,16 +11,15 @@ from .models import Content,Metadata,LongArticle
 
 def index(request):
     print "got to views"
-    try:
-        print "got to try block"
-        latest_post_list = Content.objects.order_by('-article_date')[:5]
-        carousel = Content.objects.order_by('-article_date')[:3]
-        older_post_list = Content.objects.order_by('-article_date')[:10]
-        context = {'latest_post_list': latest_post_list, 'carousel':carousel, 'older_post_list':older_post_list}
-    except ProgrammingError:
-        print('ProgrammingError')
+ 
+    print "got to try block"
+    latest_post_list = Content.objects.order_by('-article_date')[:5]
+    carousel = Content.objects.order_by('-article_date')[:3]
+    older_post_list = Content.objects.order_by('-article_date')[:10]
+    context = {'latest_post_list': latest_post_list, 'carousel':carousel, 'older_post_list':older_post_list}
+  
 
-        return render(request, 'articles/new/index03.html',context)
+    return render(request, 'articles/new/index03.html',context)
 
 
 def article(request, article_name_slug):
