@@ -20,10 +20,8 @@ def index(request):
     except ProgrammingError:
         print('ProgrammingError')
 
-    try:
         return render(request, 'articles/new/index03.html',context)
-    except ProgrammingError:
-        print('ProgrammingError')
+
 
 def article(request, article_name_slug):
 
