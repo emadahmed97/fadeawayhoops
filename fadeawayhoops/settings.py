@@ -147,7 +147,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET_NAME']                          
 MEDIA_ROOT = '/media/'                                                          
-S3_URL = 'http://fadeawayhoops.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME                
+S3_URL = 'http://fadeawayhoops.s3.amazonaws.com/'
 MEDIA_URL = S3_URL + MEDIA_ROOT                                                 
 DEFAULT_FILE_STORAGE = 'fadeawayhoops.s3utils.MediaRootS3BotoStorage'                 
 STATICFILES_STORAGE = 'fadeawayhoops.s3utils.StaticRootS3BotoStorage'                 
