@@ -91,17 +91,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ALLOWED_HOSTS = ['*']
 
-try:
-    from .local_settings import *
-except ImportError:
-    AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET_NAME']                          
-    MEDIA_ROOT = '/media/'                                                          
-    S3_URL = 'http://fadeawayhoops.s3.amazonaws.com/'
-    MEDIA_URL = S3_URL + MEDIA_ROOT                                                 
-    DEFAULT_FILE_STORAGE = 's3utils.MediaRootS3BotoStorage'                 
-    STATICFILES_STORAGE = 's3utils.StaticRootS3BotoStorage'                 
-    AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']                             
-    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']  
 
 
 
@@ -153,3 +142,14 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
+try:
+    from .local_settings import *
+except ImportError:
+    AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET_NAME']                          
+    MEDIA_ROOT = '/media/'                                                          
+    S3_URL = 'http://fadeawayhoops.s3.amazonaws.com/'
+    MEDIA_URL = S3_URL + MEDIA_ROOT                                                 
+    DEFAULT_FILE_STORAGE = 's3utils.MediaRootS3BotoStorage'                 
+    STATICFILES_STORAGE = 's3utils.StaticRootS3BotoStorage'                 
+    AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']                             
+    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']  
