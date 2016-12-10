@@ -31,8 +31,10 @@ class Content(models.Model):
     article_id = models.IntegerField
     article_text = models.TextField(max_length=20000, blank=True)
     article_image = models.FileField(null=True, blank=True)    # add image field to this later
+    article_image2 = models.FileField(null=True, blank=True)    # add image field to this later
     slug = models.SlugField(unique=True,null=True,blank=True,max_length=255);
     metadata = models.ForeignKey('metadata', null=True)
+    tags = models.CharField(max_length=300,blank=True,null=True)
 
     heading1 = models.CharField(max_length=250,null=True,blank=True);
     paragraph1 = models.TextField(max_length=20000,null=True,blank=True);

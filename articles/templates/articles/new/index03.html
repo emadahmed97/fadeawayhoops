@@ -1,15 +1,17 @@
+{% block header %}
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
 <!--[if IE 9]>  <html class="ie9" lang="en">    <![endif]-->
 <!--[if IE 8]>  <html class="ie8" lang="en">    <![endif]-->
+
+    
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Fadeaway Hoops | Your NBA Home </title>
-
+    <title>{% block title %} FadeawayHoops | Your NBA Home {% endblock %} </title>
 
     <!-- CSS -->
 
@@ -64,23 +66,22 @@
 
     </script>
 
+    
   </head>
+  {% endblock %}
+  
+{% block bodyblock %}  
   <body>
-
     <!-- Loader -->
-    <div id="loader-wrapper">
-        <div id="loader"></div>
-        <div class="loader-section section-left"></div>
-        <div class="loader-section section-right"></div>
-     </div>
+
     <!-- /Loader -->
 
     <!-- sub-top -->
     <div id="sub-top-dark">
       <div class="container">
         <div class="top-contacts">
-          <div><a href="https://twitter.com/fadeawayhoops"><i class="fa fa-instagram"></i>@fadeawayhoops</a></div>
-          <div><a href="#"><i class="fa fa-envelope"></i>info@fadeawayhoops.com</a></div>
+          <div><a href="https://twitter.com/fadeawayhoops" target="_blank"><i class="fa fa-twitter"></i>@fadeawayhoops</a></div>
+          <div><a href="#"><i class="fa fa-envelope"></i>fadeawayhoopsnba@gmail.com</a></div>
         </div>
       </div>
      </div>
@@ -88,6 +89,7 @@
 
     <!-- main-top -->
     <header id="header-wrapper-mp" class="sticky-menu-dark">
+
 
       <div class="sticky-header header-dark" role="navigation">
           <div class="container mp-nav">
@@ -99,12 +101,44 @@
               <nav id="main-menu" class="site-navigation primary-navigation" role="navigation">
 
                  <ul class="sf-menu clearfix" id="example">
-                   <li><a href="{% url 'articles:index'  %}">Home</a>
+                   <li><a href="{% url 'articles:index'  %}">HOME</a>
+
+
 
                    </li>
-                    <li class="current"><a href="{% static 'about.html' %}">NBA preview</a></li>
-                    <li class="current"><a href="{% static 'about.html' %}">Top 10 Lists</a></li>
-                    <li class="current"><a href="{% static 'about.html' %}">Team Breakdowns</a></li>
+                    <li><a href="/standings">STANDINGS</a></li>
+                    
+
+                    <li><a>NBA PREVIEW</a>
+                       <div class="mobnav-subarrow"></div>
+                       <ul class="submenu">
+                          {% for post in nbapreviewlist %}
+                          <li><a href="/articles/{{post.slug}}" >{{post.article_title}}</a></li>
+                          {% endfor %}
+                       </ul>
+                    </li>
+
+
+
+                    <li class="current"><a>TOP 10 LISTS</a>
+                     <div class="mobnav-subarrow"></div>
+                       <ul class="submenu">
+                          {% for post in toptenlist %}
+                          <li><a href="/articles/{{post.slug}}" >{{post.article_title}}</a></li>
+                          {% endfor %}
+                       </ul>
+
+                    </li>
+                    <li class="current"><a>TEAM BREAKDOWNS</a>
+                      <div class="mobnav-subarrow"></div>
+                       <ul class="submenu">
+                          {% for post in teambreakdownlist %}
+                          <li><a href="/articles/{{post.slug}}" >{{post.article_title}}</a></li>
+                          {% endfor %}
+                       </ul>
+
+                    </li>
+
                     
 
                     <!--<li><a href="#"><i class="fa fa-search"></i></a>-->
@@ -175,7 +209,8 @@
                         style="z-index: 2; max-width: auto; max-height: auto; white-space: nowrap;">  <a href="/articles/{{post.slug}}" >{{post.article_title}}</a>
                    </div>
 
-<p>Hello </p>
+
+
 
 
                 <br>
@@ -215,40 +250,53 @@
 		 <div class="counts e-block-ins e-bg-dark e-bg-dark-texture" data-stellar-background-ratio="0.5">
 			 <div class="container">
 				 <div class="count-container row">
-					 <div class="col-md-4 count wow fadeIn" data-wow-duration="1.3s" data-wow-delay="0.5s">
-						 <div class="count-icon"><div class="icon-camera"></div></div>
-						 <span class=".integers digit font-accident-one-light">12654</span>
-						 <div class="count-text">Photos added</div>
+
+          <h1> Interesting League Leaders </h1>
+          <br>
+
+					 <div class="col-lg-4 count wow fadeIn" data-wow-duration="1.3s" data-wow-delay="0.5s">
+						 <h2> Highest Usage Rate </h2>
+						 <span class=".integers digit font-accident-one-light">{{ usagerateleader.0 }}</span>
+             <br>
+						 <span class=".integers digit font-accident-one-light">{{ usagerateleader.1 }}%</span>
 					 </div>
-					 <div class="col-md-4 count wow fadeIn" data-wow-duration="1.3s" data-wow-delay="0.5s">
-						 <div class="count-icon"><div class="icon-map"></div></div>
-						 <span class=".integers digit font-accident-one-light">65</span>
-						 <div class="count-text">Places visited</div>
-					 </div>
-					 <div class="col-md-4 count wow fadeIn" data-wow-duration="1.3s" data-wow-delay="0.5s">
-						 <div class="count-icon"><div class="icon-paper"></div></div>
-						 <span class=".integers digit font-accident-one-light">9356</span>
-						 <div class="count-text">Posts written</div>
-					 </div>
+					  <div class="col-lg-4 count wow fadeIn" data-wow-duration="1.3s" data-wow-delay="0.5s">
+             <h2>2-Point FG Made</h2>
+             <span class=".integers digit font-accident-one-light">   {{ twopointfgleader.0 }}</span>
+             <br>
+             <span class=".integers digit font-accident-one-light">   {{ twopointfgleader.1 }}</span>
+           </div>
+					 <div class="col-lg-4 count wow fadeIn" data-wow-duration="1.3s" data-wow-delay="0.5s">
+             <h2>    Minutes Played</h2>
+             <span class=".integers digit font-accident-one-light">   {{ mpgleader.0 }}</span>
+             <br>
+             <span class=".integers digit font-accident-one-light">   {{ mpgleader.1 }}</span>
+           </div>
 				 </div>
 			 </div>
 		 </div>
 		 <!-- /Counts Block -->
 
-
+     <br>
+     <br>
 
 
      <!--  Portfolio Block  -->
 		 <div class="portfolio-hp e-block e-block-centered e-bg-skin">
 
 
+      <h2 class="font-accident-one-bold uppercase white wow fadeIn" data-wow-duration="1.3s" data-wow-delay="0.5s">More Articles</h2>
+
+       <p class=" wow fadeIn" data-wow-duration="1.3s" data-wow-delay="0.5s">
+         FIND YOUR FAVORITE ARTICLES BASED ON POPULAR CATEGORIES
+       </p>
 
 			 <div id="isotope-filters" class="port-filter block-centered wow fadeIn" data-wow-duration="1.3s" data-wow-delay="0.5s">
 				 <ul>
 					 <li><a href="#cat1" data-filter="*">All</a></li>
-					 <li><a href="#cat2" data-filter=".web">Web Design</a></li>
-					 <li><a href="#cat3" data-filter=".marketing">Online Marketing</a></li>
-					 <li><a href="#cat4" data-filter=".seo">SEO</a></li>
+					 <li><a href="#cat2" data-filter=".web">Player Rankings</a></li>
+					 <li><a href="#cat3" data-filter=".marketing">Machine Learning</a></li>
+					 <li><a href="#cat4" data-filter=".seo">Marquee Game Previews</a></li>
 				 </ul>
 			 </div>
 			 <div class="dividewhite4"></div>
@@ -258,133 +306,67 @@
 
 				 <div id="posts" class="row">
 
-
-
-           <div id="2" class="item web seo col-md-3 wow fadeIn" data-wow-duration="1.3s" data-wow-delay="0.5s">
+                                     
+           
+                          
+          {% for post in playerankings %}
+           <div id="2" class="item web col-md-3 wow fadeIn" data-wow-duration="1.3s" data-wow-delay="0.5s">
              <div class="item-wrap">
                <figure class="effect-goliath captions">
-                 <img src="{%static 'assets/custom/images/magazine/02.jpg' %}" alt="img03"/>
-                 <figcaption>
-                   <a href="portfolio-item.html">View more</a>
-                 </figcaption>
+                 <img src="{{post.article_image.url}}" href="/articles/{{post.slug}}" alt="img03"/>
                </figure>
                <div class="portfolio-caption">
-                 <h4 class="font-accident-one-normal uppercase"><a href="portfolio-item.html">{{older_post_list.3.article_title}}</a></h4>
-                 <p>Some people say i am a new romantic, but i am just Electronic...</p>
+                 <h4 class="font-accident-one-normal uppercase"><a href="/articles/{{post.slug}}" >{{post.article_title}}</a></h4>
+                 <p>{{post.article_tagline}}</p>
                  <div class="dividewhite1"></div>
                  <div class="portfolio-date">
-                   <p><span class="icon-clock"></span>  12/27/2014</p>
-                   <p><span class="icon-tag"></span> Web Design</p>
+                   <p><span class="icon-clock"></span>  {{post.article_date}}</p>
+                   <p><span class="icon-tag"></span> Player Rankings</p>
                  </div>
                </div>
              </div>
            </div>
+           {% endfor %}
 
-
-
-
-	
-
-					 <div id="2" class="item web seo col-md-3 wow fadeIn" data-wow-duration="1.3s" data-wow-delay="0.5s">
-						 <div class="item-wrap">
-							 <figure class="effect-goliath captions">
-								 <img src="{%static 'assets/custom/images/magazine/02.jpg' %}" alt="img03"/>
-								 <figcaption>
-									 <a href="portfolio-item.html">View more</a>
-								 </figcaption>
-							 </figure>
-							 <div class="portfolio-caption">
-								 <h4 class="font-accident-one-normal uppercase"><a href="portfolio-item.html">{{older_post_list.4.article_title}}</a></h4>
-								 <p>Some people say i am a new romantic, but i am just Electronic...</p>
-								 <div class="dividewhite1"></div>
-								 <div class="portfolio-date">
-									 <p><span class="icon-clock"></span>  12/27/2014</p>
-									 <p><span class="icon-tag"></span> Web Design</p>
-								 </div>
-							 </div>
-						 </div>
-					 </div>
-
-           <div id="2" class="item web seo col-md-3 wow fadeIn" data-wow-duration="1.3s" data-wow-delay="0.5s">
+          {% for post in machinelearning %}
+           <div id="2" class="item marketing col-md-3 wow fadeIn" data-wow-duration="1.3s" data-wow-delay="0.5s">
              <div class="item-wrap">
                <figure class="effect-goliath captions">
-                 <img src="{%static 'assets/custom/images/magazine/02.jpg' %}" alt="img03"/>
-                 <figcaption>
-                   <a href="portfolio-item.html">View more</a>
-                 </figcaption>
+                 <img src="{{post.article_image.url}}" href="/articles/{{post.slug}}" alt="img03"/>
                </figure>
                <div class="portfolio-caption">
-                 <h4 class="font-accident-one-normal uppercase"><a href="portfolio-item.html">{{older_post_list.5.article_title}}</a></h4>
-                 <p>Some people say i am a new romantic, but i am just Electronic...</p>
+                 <h4 class="font-accident-one-normal uppercase"><a href="/articles/{{post.slug}}" >{{post.article_title}}</a></h4>
+                 <p>{{post.article_tagline}}</p>
                  <div class="dividewhite1"></div>
                  <div class="portfolio-date">
-                   <p><span class="icon-clock"></span>  12/27/2014</p>
-                   <p><span class="icon-tag"></span> Web Design</p>
+                   <p><span class="icon-clock"></span>  {{post.article_date}}</p>
+                   <p><span class="icon-tag"></span> Machine Learning</p>
                  </div>
                </div>
              </div>
            </div>
+           {% endfor %}
 
-
-            <div id="2" class="item web seo col-md-3 wow fadeIn" data-wow-duration="1.3s" data-wow-delay="0.5s">
+          {% for post in marqueegame %}
+           <div id="2" class="item seo col-md-3 wow fadeIn" data-wow-duration="1.3s" data-wow-delay="0.5s">
              <div class="item-wrap">
                <figure class="effect-goliath captions">
-                 <img src="{%static 'assets/custom/images/magazine/02.jpg' %}" alt="img03"/>
-                 <figcaption>
-                   <a href="portfolio-item.html">View more</a>
-                 </figcaption>
+                 <img src="{{post.article_image.url}}" href="/articles/{{post.slug}}" alt="img03"/>
                </figure>
                <div class="portfolio-caption">
-                 <h4 class="font-accident-one-normal uppercase"><a href="portfolio-item.html">{{older_post_list.6.article_title}}</a></h4>
-                 <p>Some people say i am a new romantic, but i am just Electronic...</p>
+                 <h4 class="font-accident-one-normal uppercase"><a href="/articles/{{post.slug}}" >{{post.article_title}}</a></h4>
+                 <p>{{post.article_tagline}}</p>
                  <div class="dividewhite1"></div>
                  <div class="portfolio-date">
-                   <p><span class="icon-clock"></span>  12/27/2014</p>
-                   <p><span class="icon-tag"></span> Web Design</p>
+                   <p><span class="icon-clock"></span>  {{post.article_date}}</p>
+                   <p><span class="icon-tag"></span> Marquee Game</p>
                  </div>
                </div>
              </div>
            </div>
+           {% endfor %}
 
-           <div id="2" class="item web seo col-md-3 wow fadeIn" data-wow-duration="1.3s" data-wow-delay="0.5s">
-             <div class="item-wrap">
-               <figure class="effect-goliath captions">
-                 <img src="{%static 'assets/custom/images/magazine/02.jpg' %}" alt="img03"/>
-                 <figcaption>
-                   <a href="portfolio-item.html">View more</a>
-                 </figcaption>
-               </figure>
-               <div class="portfolio-caption">
-                 <h4 class="font-accident-one-normal uppercase"><a href="portfolio-item.html">{{older_post_list.7.article_title}}</a></h4>
-                 <p>Some people say i am a new romantic, but i am just Electronic...</p>
-                 <div class="dividewhite1"></div>
-                 <div class="portfolio-date">
-                   <p><span class="icon-clock"></span>  12/27/2014</p>
-                   <p><span class="icon-tag"></span> Web Design</p>
-                 </div>
-               </div>
-             </div>
-           </div>
 
-           <div id="2" class="item web seo marketing col-md-3 wow fadeIn" data-wow-duration="1.3s" data-wow-delay="0.5s">
-             <div class="item-wrap">
-               <figure class="effect-goliath captions">
-                 <img src="{%static 'assets/custom/images/magazine/02.jpg' %}" alt="img03"/>
-                 <figcaption>
-                   <a href="portfolio-item.html">View more</a>
-                 </figcaption>
-               </figure>
-               <div class="portfolio-caption">
-                 <h4 class="font-accident-one-normal uppercase"><a href="portfolio-item.html">Kalina Marie</a></h4>
-                 <p>Some people say i am a new romantic, but i am just Electronic...</p>
-                 <div class="dividewhite1"></div>
-                 <div class="portfolio-date">
-                   <p><span class="icon-clock"></span>  12/27/2014</p>
-                   <p><span class="icon-tag"></span> Web Design</p>
-                 </div>
-               </div>
-             </div>
-           </div>
 
 					 
 
@@ -406,30 +388,22 @@
 
 		 <!-- Features Block -->
 		 <div class="hp-features-slider e-block-dark">
+      <br>
+              <h1 align="center">      Latest NBA News </h1>
 			 <div class="container-fluid">
 				 <div class="row">
 
 					 <div class="col-md-12 nopadding wow slideInRight" data-wow-duration="1.3s" data-wow-delay="0.5s">
 						 <div class="features-slider e-bg-dark-texture" data-stellar-background-ratio="0.5">
 							 <ul class="slides" id="featuresSlider">
+                {% for headline, report in newsdict.items %}
 								 <li>
-									 <h3 class="font-accident-one-normal uppercase">Super Flexible</h3>
-									 <p>Made to be a simple construction kit to assemble a website for all possible business or lifestyle cases. Make your web site less than 15 minutes.</p>
+									 <h3 class="font-accident-one-normal uppercase">{{headline}}</h3>
+                   <br>
+									 <h4>{{report}}</h4>
 									 <div class="dividewhite1"></div>
-									 <p><a href="#!" class="btn btn-lg btn-wh-str">Learn more <i class="fa fa-long-arrow-right"></i></a></p>
 								 </li>
-								 <li>
-									 <h3 class="font-accident-one-normal uppercase">Multi-Purpose Design</h3>
-									 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. </p>
-									 <div class="dividewhite1"></div>
-									 <p><a href="#!" class="btn btn-lg btn-wh-str">Find out more <i class="fa fa-long-arrow-right"></i></a></p>
-								 </li>
-								 <li>
-									 <h3 class="font-accident-one-normal uppercase">Released for People</h3>
-									 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. </p>
-									 <div class="dividewhite1"></div>
-									 <p><a href="#!" class="btn btn-lg btn-wh-str">Find out more <i class="fa fa-long-arrow-right"></i></a></p>
-								 </li>
+                {% endfor %}
 							 </ul>
 						 </div>
 					 </div>
@@ -449,9 +423,10 @@
 
 
 	 </div>
+   {% endblock %}
 
 
-
+   {% block footerblock %} 
     <!-- footer -->
     <div id="footer">
         <div class="container">
@@ -468,14 +443,14 @@
                 <div class="follow-element">
                   <div class="follow-icon"><i class="fa fa-twitter"></i></div>
                   <div class="follow-descr">
-                    <div class="follow-social"><a href="#">twitter</a></div>
+                    <div class="follow-social"><a target="_blank" href="https://twitter.com/fadeawayhoops">twitter</a></div>
                   </div>
                 </div>
                 <div class="dividewhite1"></div>
                 <div class="follow-element">
                   <div class="follow-icon"><i class="fa fa-facebook"></i></div>
                   <div class="follow-descr">
-                    <div class="follow-social"><a href="#">facebook</a></div>
+                    <div class="follow-social"><a target="_blank" href="https://www.facebook.com/fadeawayhoops/">facebook</a></div>
                     
                   </div>
                 </div>
@@ -487,7 +462,9 @@
 
         <div class="col-lg-6">
 
-       <a class="twitter-timeline" href="https://twitter.com/fadeawayhoops">Follow us</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+       <a class="twitter-timeline"  data-height="300" data-width="800" href="https://twitter.com/fadeawayhoops">Tweets by FadeawayHoops</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+  
 
         </div>
 
@@ -510,4 +487,8 @@
 
 
   </body>
+
+
 </html>
+
+{% endblock %}

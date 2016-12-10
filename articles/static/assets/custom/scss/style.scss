@@ -209,7 +209,7 @@ $accentcolor: #ff9900;
 */
 
 
-@mixin block-margins {  padding: 100px 0 100px 0;  }
+@mixin block-margins {  padding: 0px 0 0px 0;  }
 @mixin block-ins-margins {  padding: 70px 0 70px 0;  }
 @mixin infoblock-margins {  margin: 0 0 35px 0;  }
 
@@ -1330,7 +1330,7 @@ ul.sf-menu > li, .sf-menu > li > a {  border: none;  text-align: left;  }
     li:last-child {  margin-right: 0;  }
     a {
       font-weight: 400;
-      font-size: 13px;
+      font-size: 15px;
     }
     > ul > li > a {
       text-transform: uppercase;
@@ -2432,7 +2432,7 @@ ul.sf-menu > li, .sf-menu > li > a {  border: none;  text-align: left;  }
     line-height: 20px;
     color: #999;
     a {  color: #999; &:hover {color: $hovercolor; text-decoration: none;} }
-    span { position: relative; font-size: 14px;  margin-right: 2px;  }
+    span { position: relative; font-size: 20px;  margin-right: 2px;  }
     p { display: inline-block; margin-right: 10px; }
   }
   a {  color: $fontcolor-regular;  }
@@ -2455,7 +2455,7 @@ ul.sf-menu > li, .sf-menu > li > a {  border: none;  text-align: left;  }
         padding: 6px 18px;
         margin-right: 1px;
         font-family: "Georgia", serif;
-        font-size: 14px;
+        font-size: 20px;
         font-style: oblique;
         color: $fontcolor-regular;
         transition: all 0.35s ease-in-out;
@@ -2683,7 +2683,7 @@ ul.sf-menu > li, .sf-menu > li > a {  border: none;  text-align: left;  }
       }
       a {
         text-transform: uppercase;
-        font-size: 14px;
+        font-size: 20px;
         color: $fontcolor-regular;
         &:hover, &:hover i {  color: $hovercolor;  }
       }
@@ -2822,7 +2822,7 @@ ul.sf-menu > li, .sf-menu > li > a {  border: none;  text-align: left;  }
       border-top: 3px solid $bg-dark;
       a {
         text-transform: uppercase;
-        font-size: 14px;
+        font-size: 20px;
         color: #333;
         cursor: pointer;
         i {

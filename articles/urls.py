@@ -8,6 +8,7 @@ from . import views
 app_name = 'articles'
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^standings/$', views.standings, name='standings'),
     url(r'^articles/(?P<article_name_slug>[\w\-]+)/$', views.article, name='articles')
 ]
 
