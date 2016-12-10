@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'storages',
+    'corsheaders',
     'django.contrib.staticfiles',
 ]
 
@@ -46,10 +47,12 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'fadeawayhoops.urls'
+CORS_ORIGIN_ALLOW_ALL = True   
 
 TEMPLATES = [
     {
