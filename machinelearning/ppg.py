@@ -8,13 +8,10 @@ from sklearn.neighbors import KNeighborsRegressor
 ### PREDICTING NBA PLAYER'S POINTS PER GAME USING K NEAREST NEIGHBORS
 
 
-with open("nba_2013.csv", 'r') as csvfile:
+with open("nba_2015.csv", 'r') as csvfile:
     nba_raw = pandas.read_csv(csvfile)
 
 nba = nba_raw.fillna(0)
-
-
-#print ("nba.columns.values:", nba.columns.values)
 
 
 
@@ -36,8 +33,7 @@ def euclidean_distance(row):
     return math.sqrt(value)
 
 
-lebron_distance = nba.apply(euclidean_distance, axis=1)
-#print("lebron_distance[:5]:\n", lebron_distance[:5])
+player_distance = nba.apply(euclidean_distance, axis=1)
 
 # Normalize columns by making the mean for each category 0 and set the standard
 # deviation to 1
@@ -49,21 +45,21 @@ nba_normalized = (nba_numeric - nba_numeric.mean()) / nba_numeric.std()
 nba_normalized.head(5)
 
 
-# finding euclidean distances that are closest to lebron
+# finding euclidean distances that are closest to player using normalized weights
 
 
 nba_normalized.fillna(0, inplace=True)
 
-lebron_normalized = nba_normalized[nba["player"] == "LeBron James"]
+player_normalized = nba_normalized[nba["player"] == "Kyle Lowry"]
 
-euclidean_distances = nba_normalized.apply(lambda row: distance.euclidean(row, lebron_normalized), axis=1)
+euclidean_distances = nba_normalized.apply(lambda row: distance.euclidean(row, player_normalized), axis=1)
 distance_frame = pandas.DataFrame(data={"dist": euclidean_distances, "idx": euclidean_distances.index})
 distance_frame.sort_values(by="dist", inplace=True)
 
 second_smallest = distance_frame.iloc[1]["idx"]
 
-most_similar_to_lebron = nba.loc[int(second_smallest)]["player"]
-print("most_similar_to_lebron:", most_similar_to_lebron)
+most_similar_to_player = nba.loc[int(second_smallest)]["player"]
+#print("most similar to player:", most_similar_to_player)
 
 
 
@@ -104,19 +100,22 @@ for y in x:
 
 players = nba[nba["x2p."] == x ]
 
-
+# print out stats
 
 
 if len(players) > 1:
-    print "Length is > 1"
     exit()
 
 else:
     print players["player"]
+    gamesplayed = players["g"]
 
 
-print "prediction is: "
-points = predictions[:1] / 82
+for game in gamesplayed:
+    gamesplayed = game
+    break
+
+points = predictions[:1] / gamesplayed
 pointspergame =  str(points).replace('[','').replace(']','')
 print pointspergame + ' ppg for upcoming season'
 
@@ -126,7 +125,3 @@ actual = test[y_column]
 
 #mean squared error
 mse = (((predictions - actual) ** 2).sum()) / len(predictions)
-
-
-
-#print("mse:", mse)
